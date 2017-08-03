@@ -30,7 +30,9 @@ var topics = [
 {title:"BMW",posts:51},
 ];
 
+//this is the function to load up the login page for user to login
 function showLoginPage(){
+  //add new div named page, all element will be added inside
      var page = $("<div></div>");
      page.append("<h1 class = 'logintitle'>Login page</h1>");
      var username = $("<input type='text'></input>");
@@ -45,13 +47,15 @@ function showLoginPage(){
    var loginbutton = $("<button class='button'>Login</button>");
      page.append(loginbutton);
      loginbutton.on("click",function(){
+       //when the button on clicked, first table will show up
          showForumTopics();
      }
    );
-
+    //save the content to html
      $("#maincontent").html(page);
 }
 
+//the function to show the Registration page
 function showRegisterPage(){
 
       var page = $("<div></div>");
@@ -82,6 +86,7 @@ function showRegisterPage(){
      $("#maincontent").html(page);
 }
 
+//function to handle the onclick event for user when they clicked on the table
 function createTopicOnclick(node,topic){
   node.on("click",function(){
    showSingleTopic(topic);
@@ -110,8 +115,7 @@ function showSingleTopic(topicDetails){
   Alltopic();
 }
     if (topicDetails.title == "BMW"){
-      var page = $("<div></div>");
-      page.append("<h1>Other Topics</h1>");
+    Nexttopic();
 
 }
     $("#maincontent").html(page);
@@ -123,7 +127,7 @@ var textsarea = $("<textarea id='forumcontent' rows='5' cols='40' style='resize:
 var StudenttopicTable = $("<table class='topicsTable' id='myTableID'><tr><th>User</th><th>Content</th></tr></table>");
 var Table = $("<table class='topicsTable'><tr><th>Title</th><th>content</th></tr></table>");
 var ro = $("<tr></tr>");
-
+//for benz
  function Alltopic(){
     var page = $("<div></div>");
     var PresentButton = $("<button class='button'>Submit</button>");
@@ -161,6 +165,45 @@ var ro = $("<tr></tr>");
 
 }
 
+
+
+function Nexttopic(){
+   var page = $("<div></div>");
+   var PresentButton = $("<button class='button'>Submit</button>");
+   page.append("<h1 class='logintitle'>BMW Disscussion Part</h1>");
+   page.append(Table);
+   var inputone = $("<br><input id='topic'><br>");
+  var inputtwo = $("<textarea id='content' rows='5' cols='40' style='resize:none'></textarea><br>");
+   page.append("<p class='bodyfont'>Enter Your Title here: </p>");
+   page.append(inputone);
+   page.append("<p class='bodyfont'>Enter Your content here: </p>");
+   page.append(inputtwo);
+   page.append(PresentButton);
+  $("#maincontent").html(page);
+
+  Table.on("click",function(){
+  tableshowup();
+  });
+
+
+ PresentButton.on("click",function(){
+
+   var topicinput=document.getElementById("topic").value;
+   var contentinput=document.getElementById("content").value;
+   var ro = $("<tr></tr>");
+   ro.append("<td>" + topicinput + "</td>");
+   ro.append("<td>" + contentinput + "</td>");
+   Table.append(ro);
+
+   ro.on("click",function(){
+   tableshowup();
+   });
+
+});
+
+
+}
+
 function tableshowup(){
 
   var page = $("<div></div>");
@@ -190,7 +233,7 @@ alert("Cannot Add Empty Value Into table, please try again!")
 
 else{
 var row = $("<tr></tr>");
-row.append("<td>" + usericon + b + "</td>");
+row.append("<td>" + b + "</td>");
 row.append("<td>" + c + "</td>");
 StudenttopicTable.append(row);
 createsTopicOnclick(row,Studenttopics);
